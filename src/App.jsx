@@ -36,57 +36,98 @@ const THEORY_NOTES = {
 const MISSIONS = [
   {
     id: 1,
-    emoji: '📐',
-    title: 'Vòng 1 — Ổn định thị trường',
-    scenario: 'Thị trường đang rối loạn: cung yếu, chi phí cao, cầu thấp. Điểm phúc lợi chỉ đạt ~30.',
-    goal: 'Đưa điểm phúc lợi ≥ 80 bằng cách điều chỉnh các slider.',
-    hint: '💡 Tăng Cung cơ bản + Công nghệ, giảm Chi phí → đường cung dịch phải.',
-    time: 50,
-    type: 'reach',    // đạt ngưỡng là thắng ngay
-    target: 80,
+    emoji: '🏭',
+    title: 'Vòng 1 — Đổi Mới 1986',
+    scenario: 'Việt Nam đang áp dụng cơ chế bao cấp: trần giá cứng nhắc khắp nơi, cung thiếu hụt trầm trọng. Người dân xếp hàng dài mua nhu yếu phẩm, chợ đen tràn lan. Điểm phúc lợi chỉ ~20.',
+    goal: 'Đưa điểm phúc lợi ≥ 75 và DUY TRÌ liên tục 10 giây.',
+    hint: '💡 Gỡ trần giá trước → thị trường tự điều tiết. Sau đó tăng Cung cơ bản + Công nghệ để bù thiếu hụt. Điểm phải >= 75 liên tục 10 giây mới thắng!',
+    time: 100,
+    type: 'hold',
+    target: 75,
+    holdSeconds: 10,
+    forbidden: [],
     setup: {
-      sliders: { demandBase: 38, income: 35, preference: 28, supplyBase: 25, cost: 80, tech: 20 },
-      intervention: null,
-    },
-  },
-  {
-    id: 2,
-    emoji: '🏛️',
-    title: 'Vòng 2 — Gỡ bỏ can thiệp sai lầm',
-    scenario: 'Chính phủ đang áp TRẦN GIÁ → thị trường thiếu hàng trầm trọng. Điểm phúc lợi rất thấp.',
-    goal: 'Khôi phục điểm phúc lợi ≥ 70 bằng cách gỡ can thiệp hoặc bù đắp bằng chính sách khác.',
-    hint: '💡 Thử: Bỏ trần giá → chọn Trợ cấp để giữ giá thấp mà không gây thiếu hàng.',
-    time: 45,
-    type: 'reach',
-    target: 70,
-    setup: {
-      sliders: { demandBase: 70, income: 65, preference: 60, supplyBase: 55, cost: 45, tech: 55 },
+      sliders: { demandBase: 72, income: 58, preference: 65, supplyBase: 20, cost: 88, tech: 15 },
       intervention: 'ceiling',
     },
   },
   {
-    id: 3,
-    emoji: '🌪️',
-    title: 'Vòng 3 — Chống khủng hoảng',
-    scenario: 'Cú sốc kinh tế xảy ra mỗi 10 giây. Thị trường biến động liên tục.',
-    goal: 'Giữ điểm phúc lợi ≥ 55 LIÊN TỤC trong suốt 60 giây. Nếu điểm xuống dưới 55 → thua ngay!',
-    hint: '💡 Phản ứng nhanh mỗi khi có sự kiện. Dùng trợ cấp khi cung giảm, giảm chi phí khi lạm phát.',
-    time: 60,
-    type: 'survive',  // phải duy trì liên tục
-    target: 55,
-    shockInterval: 10,
+    id: 2,
+    emoji: '⛽',
+    title: 'Vòng 2 — Cú sốc dầu mỏ 1973',
+    scenario: 'OPEC cắt xuất khẩu dầu — giá dầu thế giới tăng 400% chỉ trong 6 tháng. Chi phí sản xuất tăng vọt, cung giảm mạnh, lạm phát leo thang. Trần giá và sàn giá đều BỊ CẤM (làm trầm trọng thêm).',
+    goal: 'Ổn định điểm phúc lợi ≥ 65 và DUY TRÌ liên tục 12 giây.',
+    hint: '💡 Trợ cấp làm đường cung dịch phải — bù đắp chi phí dầu cao. Đồng thời tăng mạnh Công nghệ để giảm phụ thuộc dầu mỏ. Cần kiên nhẫn duy trì điểm!',
+    time: 110,
+    type: 'hold',
+    target: 65,
+    holdSeconds: 12,
+    forbidden: ['ceiling', 'floor'],
     setup: {
-      sliders: { demandBase: 55, income: 55, preference: 55, supplyBase: 55, cost: 45, tech: 55 },
+      sliders: { demandBase: 65, income: 60, preference: 55, supplyBase: 30, cost: 95, tech: 20 },
+      intervention: null,
+    },
+  },
+  {
+    id: 3,
+    emoji: '💸',
+    title: 'Vòng 3 — Lạm phát phi mã',
+    scenario: 'Cầu bùng nổ quá mức: thu nhập danh nghĩa tăng ảo, xu hướng tiêu dùng bùng nổ, nhưng cung không theo kịp. Lạm phát vượt 150%. Trợ cấp và sàn giá BỊ CẤM — chúng sẽ kích thích cầu thêm!',
+    goal: 'Kiểm soát điểm phúc lợi ≥ 60 và DUY TRÌ liên tục 15 giây.',
+    hint: '💡 Giảm Thu nhập kỳ vọng + Sở thích tiêu dùng → đường cầu dịch trái (hạ nhiệt). Đồng thời tăng Cung cơ bản để bắt kịp. Đây là bài toán cân bằng khó!',
+    time: 120,
+    type: 'hold',
+    target: 60,
+    holdSeconds: 15,
+    forbidden: ['subsidy', 'floor'],
+    setup: {
+      sliders: { demandBase: 95, income: 90, preference: 88, supplyBase: 35, cost: 55, tech: 40 },
+      intervention: null,
+    },
+  },
+  {
+    id: 4,
+    emoji: '📉',
+    title: 'Vòng 4 — Khủng hoảng tài chính 2008',
+    scenario: 'Bong bóng tài chính vỡ! Cú sốc kinh tế xảy ra mỗi 8 giây — bất kỳ chỉ số nào cũng có thể sụp đổ. Không có công thức cố định, chỉ có phản xạ và hiểu biết.',
+    goal: 'Sống sót! Giữ điểm phúc lợi ≥ 50 LIÊN TỤC trong suốt 90 giây. Nếu điểm xuống dưới 50 → thất bại ngay!',
+    hint: '💡 Phản ứng ngay sau mỗi cú sốc: cung giảm → dùng Trợ cấp; chi phí tăng → kéo Công nghệ lên; cầu giảm → tăng Thu nhập. Theo dõi Nhật ký sự kiện!',
+    time: 90,
+    type: 'survive',
+    target: 50,
+    shockInterval: 8,
+    forbidden: [],
+    setup: {
+      sliders: { demandBase: 62, income: 60, preference: 58, supplyBase: 62, cost: 42, tech: 62 },
+      intervention: null,
+    },
+  },
+  {
+    id: 5,
+    emoji: '🚀',
+    title: 'Vòng 5 — Thoát bẫy thu nhập trung bình',
+    scenario: 'Nền kinh tế đang giậm chân ở mức trung bình. Mọi chỉ số tầm thường, không có đột phá. Chỉ có tự do hóa thị trường toàn diện mới thoát được bẫy — Trần giá, Sàn giá và Thuế đều BỊ CẤM!',
+    goal: 'Đưa điểm phúc lợi ≥ 88 và DUY TRÌ liên tục 20 giây. Đây là thử thách khó nhất!',
+    hint: '💡 Tăng tối đa Công nghệ (90+) + Cung cơ bản (85+), giảm Chi phí về thấp. Cân bằng Cầu ở mức vừa phải. Trợ cấp được phép dùng nhưng tốn ngân sách (DWL).',
+    time: 130,
+    type: 'hold',
+    target: 88,
+    holdSeconds: 20,
+    forbidden: ['ceiling', 'floor', 'tax'],
+    setup: {
+      sliders: { demandBase: 50, income: 50, preference: 50, supplyBase: 50, cost: 50, tech: 50 },
       intervention: null,
     },
   },
 ]
 
 const GRADES = [
-  { min: 3, grade: 'S', label: 'Xuất sắc!', color: '#ffd32a', msg: 'Bạn là nhà kinh tế tài ba. Ba vòng hoàn hảo!' },
-  { min: 2, grade: 'A', label: 'Giỏi!',     color: '#00d4aa', msg: 'Nắm vững cung cầu. Một vòng còn vướng mắc.' },
-  { min: 1, grade: 'B', label: 'Khá!',       color: '#6c63ff', msg: 'Hiểu cơ bản. Cần luyện thêm phản ứng thị trường.' },
-  { min: 0, grade: 'C', label: 'Cần cố gắng!', color: '#ff9f43', msg: 'Thị trường khắc nghiệt. Đọc lý thuyết rồi thử lại!' },
+  { min: 5, grade: 'S', label: 'Huyền thoại!',   color: '#ffd32a', msg: 'Hoàn hảo tuyệt đối — 5/5 vòng! Bạn xứng đáng làm Bộ trưởng Kinh tế.' },
+  { min: 4, grade: 'A', label: 'Xuất sắc!',       color: '#00d4aa', msg: 'Nắm vững lý thuyết kinh tế. Một bước nữa là huyền thoại!' },
+  { min: 3, grade: 'B', label: 'Giỏi!',           color: '#6c63ff', msg: 'Hiểu cơ bản và vận dụng tốt. Luyện thêm phản xạ thị trường.' },
+  { min: 2, grade: 'C', label: 'Khá!',            color: '#ff9f43', msg: 'Đã hiểu một số khái niệm. Cần học thêm về can thiệp chính sách.' },
+  { min: 1, grade: 'D', label: 'Cần cố gắng!',   color: '#ff4d6d', msg: 'Thị trường khắc nghiệt hơn bạn nghĩ. Đọc lý thuyết rồi thử lại!' },
+  { min: 0, grade: 'F', label: 'Chưa đạt!',       color: '#8888aa', msg: 'Đừng nản! Xem hướng dẫn cách chơi rồi thử lại từ đầu.' },
 ]
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
@@ -131,6 +172,7 @@ export default function App() {
     phase: 'idle',
     idx: 0,
     timeLeft: 0,
+    holdCount: 0,  // consecutive seconds above target (for 'hold' type)
     results: [],   // array of { passed: bool, score: number }
   })
 
@@ -140,6 +182,7 @@ export default function App() {
   const shockRef    = useRef(null)
   const chartRef    = useRef(null)
   const chartInstance = useRef(null)
+  const scoreRef    = useRef(0)
 
   // ── Toast ──
   const showToast = useCallback((title, msg) => {
@@ -166,6 +209,7 @@ export default function App() {
             : intervention === 'tax'     ? (CS + PS) * 0.12 : 0
   const maxSurplus = Math.max(CS + PS, 1)
   const score = clamp(Math.round((CS + PS - DWL * 3) / maxSurplus * 100), 0, 100)
+  scoreRef.current = score
   const inflation = Math.round((eqP - 50) / 50 * 100)
 
   let marketStatus = 'Cân bằng ✓'; let marketColor = 'var(--green)'
@@ -232,11 +276,27 @@ export default function App() {
     timerRef.current = setInterval(() => {
       setMission(m => {
         if (m.phase !== 'playing') { clearInterval(timerRef.current); return m }
+        const def = MISSIONS[m.idx]
         const next = m.timeLeft - 1
+
+        // 'hold' type: track consecutive seconds above target
+        if (def.type === 'hold') {
+          const newHold = scoreRef.current >= def.target ? m.holdCount + 1 : 0
+          if (newHold >= def.holdSeconds) {
+            clearInterval(timerRef.current)
+            clearInterval(shockRef.current)
+            return { ...m, phase: 'passed', timeLeft: next, holdCount: newHold }
+          }
+          if (next <= 0) {
+            clearInterval(timerRef.current)
+            return { ...m, phase: 'failed', timeLeft: 0, holdCount: newHold }
+          }
+          return { ...m, timeLeft: next, holdCount: newHold }
+        }
+
         if (next <= 0) {
           clearInterval(timerRef.current)
           clearInterval(shockRef.current)
-          const def = MISSIONS[m.idx]
           // survive type: if timer runs out and still playing → passed
           if (def.type === 'survive') {
             return { ...m, phase: 'passed', timeLeft: 0 }
@@ -281,7 +341,7 @@ export default function App() {
     const def = MISSIONS[idx]
     setSliders(def.setup.sliders)
     setIntervention(def.setup.intervention)
-    setMission({ phase: 'playing', idx, timeLeft: def.time, results: [] })
+    setMission(m => ({ phase: 'playing', idx, timeLeft: def.time, holdCount: 0, results: m.results }))
     addEvent(`🎯 Bắt đầu: ${def.title}`, 'good')
     if (def.type === 'survive') startShocks(def.shockInterval)
   }, [addEvent, startShocks])
@@ -316,7 +376,7 @@ export default function App() {
   const exitMission = () => {
     clearInterval(timerRef.current)
     clearInterval(shockRef.current)
-    setMission({ phase: 'idle', idx: 0, timeLeft: 0, results: [] })
+    setMission({ phase: 'idle', idx: 0, timeLeft: 0, holdCount: 0, results: [] })
     setSliders({ demandBase: 50, income: 50, preference: 50, supplyBase: 50, cost: 50, tech: 50 })
     setIntervention(null)
   }
@@ -403,9 +463,9 @@ export default function App() {
       {/* ── Mission Banner (playing) ── */}
       {mission.phase === 'playing' && (
         <div style={{ background: 'linear-gradient(90deg,#1a1d27,#252840)', borderBottom:'1px solid var(--border)', padding:'10px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>
-          <div>
+          <div style={{ flex:1, minWidth:0 }}>
             <div style={{ fontSize:'0.7rem', color:'var(--muted)', marginBottom:2 }}>
-              Nhiệm vụ {currentDef.id}/3 — {currentDef.title}
+              Nhiệm vụ {currentDef.id}/{MISSIONS.length} — {currentDef.title}
             </div>
             <div style={{ fontSize:'0.8rem', color:'var(--text)' }}>
               🎯 {currentDef.goal}
@@ -416,6 +476,16 @@ export default function App() {
               <div style={{ fontSize:'0.65rem', color:'var(--muted)' }}>ĐIỂM HIỆN TẠI</div>
               <div style={{ fontSize:'1.4rem', fontWeight:700, color: scoreColor }}>{score}</div>
             </div>
+            {currentDef.type === 'hold' && (
+              <div style={{ textAlign:'center' }}>
+                <div style={{ fontSize:'0.65rem', color:'var(--muted)', marginBottom:4 }}>
+                  DUY TRÌ {mission.holdCount}/{currentDef.holdSeconds}s
+                </div>
+                <div style={{ width:90, height:7, background:'var(--border)', borderRadius:4, overflow:'hidden' }}>
+                  <div style={{ width:`${Math.min((mission.holdCount/currentDef.holdSeconds)*100,100)}%`, height:'100%', background: score >= currentDef.target ? 'var(--green)' : 'var(--red)', borderRadius:4, transition:'width 0.8s ease' }} />
+                </div>
+              </div>
+            )}
             <div style={{ textAlign:'center' }}>
               <div style={{ fontSize:'0.65rem', color:'var(--muted)' }}>
                 {currentDef.type === 'reach' ? `MỤC TIÊU ≥ ${currentDef.target}` : `DUY TRÌ ≥ ${currentDef.target}`}
@@ -433,7 +503,7 @@ export default function App() {
             <div style={{ textAlign:'center', marginBottom:20 }}>
               <div style={{ fontSize:'3rem', marginBottom:8 }}>{currentDef.emoji}</div>
               <h2 style={{ color:'var(--accent)', fontSize:'1.2rem', marginBottom:6 }}>{currentDef.title}</h2>
-              <div style={{ fontSize:'0.72rem', color:'var(--muted)' }}>Vòng {currentDef.id} / 3</div>
+              <div style={{ fontSize:'0.72rem', color:'var(--muted)' }}>Vòng {currentDef.id} / {MISSIONS.length}</div>
             </div>
             <div style={infoBox('#6c63ff')}>
               <strong>Tình huống:</strong><br />{currentDef.scenario}
@@ -441,6 +511,13 @@ export default function App() {
             <div style={infoBox('#ffd32a')}>
               <strong>Mục tiêu:</strong><br />{currentDef.goal}
             </div>
+            {currentDef.forbidden && currentDef.forbidden.length > 0 && (
+              <div style={infoBox('#ff4d6d')}>
+                <strong>🚫 Bị cấm sử dụng:</strong>{' '}
+                {currentDef.forbidden.map(f => ({ ceiling:'Trần giá', floor:'Sàn giá', tax:'Thuế', subsidy:'Trợ cấp' }[f])).join(', ')}
+                <br /><span style={{ fontSize:'0.75rem', color:'var(--muted)' }}>Các chính sách này sẽ bị vô hiệu hoá trong vòng này.</span>
+              </div>
+            )}
             <div style={infoBox('#00d4aa')}>
               {currentDef.hint}
             </div>
@@ -464,7 +541,10 @@ export default function App() {
               <div style={{ color:'var(--muted)', fontSize:'0.82rem', marginTop:4 }}>{currentDef.title}</div>
             </div>
             <div style={infoBox('#00d4aa')}>
-              Điểm phúc lợi đạt <strong style={{ color:'var(--green)' }}>{score}</strong> — vượt mục tiêu {currentDef.target}!
+              {currentDef.type === 'hold'
+                ? <>Duy trì điểm <strong style={{ color:'var(--green)' }}>{score}</strong> liên tục <strong style={{ color:'var(--green)' }}>{currentDef.holdSeconds}s</strong> — hoàn thành xuất sắc!</>
+                : <>Điểm phúc lợi đạt <strong style={{ color:'var(--green)' }}>{score}</strong> — vượt mục tiêu {currentDef.target}!</>
+              }
             </div>
             <div style={{ marginTop:14 }}>
               <div style={{ fontSize:'0.75rem', color:'var(--muted)', marginBottom:8 }}>Tiến độ:</div>
@@ -498,6 +578,8 @@ export default function App() {
             <div style={infoBox('#ff4d6d')}>
               {currentDef.type === 'survive'
                 ? `Điểm phúc lợi rơi xuống ${score} — dưới ngưỡng ${currentDef.target}!`
+                : currentDef.type === 'hold'
+                ? `Hết giờ! Duy trì được ${mission.holdCount}/${currentDef.holdSeconds}s — chưa đủ. Cần điểm ≥ ${currentDef.target} liên tục.`
                 : `Hết giờ! Điểm đạt được: ${score} / Mục tiêu: ${currentDef.target}`
               }
             </div>
@@ -695,11 +777,18 @@ export default function App() {
               { id:'floor',   icon:'🟢', label:'Sàn giá (Price Floor)',    sub:'Giới hạn giá tối thiểu' },
               { id:'tax',     icon:'💰', label:'Đánh thuế',                sub:'Tăng chi phí sản xuất' },
               { id:'subsidy', icon:'🎁', label:'Trợ cấp (Subsidy)',        sub:'Giảm chi phí sản xuất', cls:'success' },
-            ].map(({ id, icon, label, sub, cls='' }) => (
-              <button key={id} className={`btn ${cls} ${intervention===id ? 'active' : ''}`} onClick={() => applyIntervention(id)}>
-                {icon} {label}<span className="btn-sub">{sub}</span>
-              </button>
-            ))}
+            ].map(({ id, icon, label, sub, cls='' }) => {
+              const isForbidden = mission.phase === 'playing' && (currentDef.forbidden || []).includes(id)
+              return (
+                <button key={id} disabled={isForbidden}
+                  className={`btn ${cls} ${intervention===id ? 'active' : ''}`}
+                  style={isForbidden ? { opacity:0.35, cursor:'not-allowed', borderColor:'var(--red)' } : {}}
+                  onClick={() => !isForbidden && applyIntervention(id)}>
+                  {isForbidden ? '🚫' : icon} {label}
+                  <span className="btn-sub">{isForbidden ? 'BỊ CẤM trong vòng này' : sub}</span>
+                </button>
+              )
+            })}
             <button className="btn danger" onClick={clearIntervention}>✖️ Bỏ can thiệp</button>
           </div>
 
